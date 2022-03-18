@@ -51,5 +51,7 @@ namespace BankProxy.API.Controllers
                 return BadRequest(new ErrorDetails(ex.Message));
             }
         }
+
+      
     }
 }

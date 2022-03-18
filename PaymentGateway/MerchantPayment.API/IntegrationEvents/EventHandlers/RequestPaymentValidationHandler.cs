@@ -17,6 +17,7 @@ namespace MerchantPayment.API.IntegrationEvents.EventHandlers
             await _payments.UpdateState(@event.Id, PaymentStatus.Processing);
             
             // Validate If card is blocked in the paymentGateway fraud detection
+            // AK TODO fraud detection service mock
             var isValid = true;
             await _payments.UpdateValidationState(@event.Id, isValid);
 

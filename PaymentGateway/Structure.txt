@@ -5,6 +5,8 @@ MerchantPayment.API
 		- CredentialKeysRepo Mocks another storage which should be extracted to external storage
 	- Card message is used for easier testing of mocks
 	- PaymentCreatedEvent is not used, but can be to count created payments or send a notification
+	- Uses Internal Mock of a fraud detection Service, which can be a separate microservice
+
 BankProxy.API
 	- A proxy for bank requests. Uses two mock banks. 
 	- All cards starting with 000000 belongs to one, the rest to other.
