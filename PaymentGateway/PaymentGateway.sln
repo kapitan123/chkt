@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{79B3C237-0341-4B55-A297-49C1A8D8AAAF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{AD12184B-F2A6-4FEA-A6AF-F1F8EA500605}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{E82853DC-DE01-45A6-9525-4C618B731C65}"
+	ProjectSection(SolutionItems) = preProject
+		Structure.txt = Structure.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankProxy.API", "BankProxy.API\BankProxy.API.csproj", "{5A89646B-458E-4B17-9BBD-225F1BAB445A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A89646B-458E-4B17-9BBD-225F1BAB445A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A89646B-458E-4B17-9BBD-225F1BAB445A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A89646B-458E-4B17-9BBD-225F1BAB445A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A89646B-458E-4B17-9BBD-225F1BAB445A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5A89646B-458E-4B17-9BBD-225F1BAB445A} = {79B3C237-0341-4B55-A297-49C1A8D8AAAF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E4B10D92-671C-4D18-B979-F0C33E2F6BED}
+	EndGlobalSection
+EndGlobal

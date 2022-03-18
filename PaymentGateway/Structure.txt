@@ -1,0 +1,4 @@
+
+
+BankProxy.API
+	- A proxy for bank requests. In this case it acts as a mock itself and not as a proxy.
