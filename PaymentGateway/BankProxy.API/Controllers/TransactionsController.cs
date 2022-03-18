@@ -28,6 +28,8 @@ namespace BankProxy.API.Controllers
             // We should be protected from double charge
             // We should implement idempotency
             // We should have it in the state storage
+            // We should retry on saved transactions if they were not successfullly finished
+            // We store transaction id for idempotency reasons as well, because of at least once delivery
             try
             {
                 var bank = _bankProvidersFactory.GetBankByCardNumber(checkoutReq.CardDetails.CardNumber);

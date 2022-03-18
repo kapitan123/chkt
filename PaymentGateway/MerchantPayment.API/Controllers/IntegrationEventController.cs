@@ -22,6 +22,8 @@ namespace MerchantPayment.API.Controllers
             // IsValidationFinished
             // publish a message
             // return ID
+
+            throw new NotImplementedException();
         }
     }
 }

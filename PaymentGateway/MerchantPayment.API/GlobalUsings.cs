@@ -1,1 +1,1 @@
-namespace MerchantPayment.API.Models.DTO
+namespace MerchantPayment.API.Models.DTO;

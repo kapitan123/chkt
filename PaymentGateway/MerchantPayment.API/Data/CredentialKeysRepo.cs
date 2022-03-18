@@ -1,13 +1,14 @@
 ﻿using MerchantPayment.API.Models.Persistance;
 namespace MerchantPayment.API.Data
 {
+    // AK TODO Extract to a microservice
     public class CredentialKeysRepo: ICredentialKeysRepo
     {
         private Dictionary<Guid, MerchantKey> _credentialKeys = new ();
 
         public CredentialKeysRepo()
         {
-            // AK TODO seed data
+            // seed data
             var normalMerhcant = new MerchantKey(Guid.Parse("34f25424-088c-482a-a75e-8ccbbecf8112"),
                 "ActiveEshop",
                 DateTime.Parse("18.03.2026"), true);

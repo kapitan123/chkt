@@ -1,20 +1,24 @@
-﻿namespace MerchantPayment.API.IntegrationEvents.EventHandlers
+﻿using MerchantPayment.API.Data;
+using MerchantPayment.API.IntegrationEvents.Events;
+
+namespace MerchantPayment.API.IntegrationEvents.EventHandlers
 {
     public class PaymentValidationFinishedHandler
     {
-        private readonly IBasketRepository _repository;
-            
-
-        public OrderStatusChangedToSubmittedIntegrationEventHandler(
-            PaymentsRepo repository)
+        private readonly IPaymentsRepo _payments;
+        public PaymentValidationFinishedHandler(IPaymentsRepo payments)
         {
-            _repository = repository;
+            _payments = payments;
         }
 
-        public Task Handle(OrderStatusChangedToSubmittedIntegrationEvent @event)
+        public Task Handle(PaymentValidationFinishedEvent @event)
         {
-            PaymentValidationFinishedHandler
+
+            // Update Status to sent to provider
+            // publish SendToProviderEvent
+            throw new NotImplementedException();
         }
 
- 
+
     }
+}

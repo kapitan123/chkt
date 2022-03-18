@@ -2,26 +2,26 @@
 
 namespace MerchantPayment.API.Data
 {
-    public class PaymentsRepo
+    public class PaymentsRepo : IPaymentsRepo
     {
-        public Task<Guid> CreatePeyment()
+        public Task<Guid> CreatePayment()
         {
-
+            throw new NotImplementedException();
         }
 
-        public Task UpdateValidationState(bool newValidationState)
+        public Task UpdateValidationState(Guid paymentId, bool newValidationState)
         {
-
+            throw new NotImplementedException();
         }
 
-        public Task UpdateProcessState(PaymentStatus newStatus)
+        public Task UpdateState(Guid paymentId, PaymentStatus newStatus)
         {
-
+            throw new NotImplementedException();
         }
 
         public Task<PaymentTransaction> GetById(Guid paymentId)
         {
-
+            throw new NotImplementedException();
         }
     }
 }

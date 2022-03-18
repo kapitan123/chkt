@@ -1,9 +1,9 @@
 ﻿namespace MerchantPayment.API.Models.DTO
 {
     public record CardDetails(
-        string CardNumber,
-        string CardHolderName,
-        DateTime CardExpiration,
-        string CardSecurityCode
+        string Number, // Should be a value object
+        string HolderName, // Should be a value object
+        DateOnly Expiration, 
+        string Cvv // Should be a value object
     );
 }
