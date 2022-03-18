@@ -1,4 +1,10 @@
-
+MerchantPayment.API
+	- Public API
+	- Uses value of "X-MERCHANT-KEY" to authorise requests
+		- CredentialKeysRepo Mocks another storage which should be extracted to external storage
 
 BankProxy.API
-	- A proxy for bank requests. In this case it acts as a mock itself and not as a proxy.
+	- A proxy for bank requests. Uses two mock banks. 
+	- All cards starting with 000000 belongs to one, the rest to other.
+	- We assupe that we have same responses from both banks. So we don't need to add mappings.
+	- We assume that we store bank integration credentials in memory

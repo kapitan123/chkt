@@ -1,6 +1,5 @@
-using BankProxy.API.Models;
-using BankProxy.API.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace BankProxy.API.Controllers
 {
@@ -9,33 +8,46 @@ namespace BankProxy.API.Controllers
     public class TransactionsController : ControllerBase
     {
         private readonly ILogger<TransactionsController> _logger;
-        private readonly IBank _bank;
+        private readonly IBankFactory _bankProvidersFactory;
 
-        public TransactionsController(ILogger<TransactionsController> logger, IBank bank)
+        public TransactionsController(ILogger<TransactionsController> logger, IBankFactory bankProvidersFactory)
         {
             _logger = logger;
-            _bank = bank;
+            _bankProvidersFactory = bankProvidersFactory;
         }
 
         // AK TODO should react to events as well
-        // AK TODO add swagger dock
+        // AK TODO Handle all exceptions and wrap them in ErrorDetails
         [HttpPost("checkout")]
+        [ProducesResponseType(typeof(CheckoutResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ErrorDetails), (int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<CheckoutResponse>> Checkout([FromBody]CheckoutRequest checkoutReq)
         {
-            // AK TODO probably makes sense to have two mocked banks in the proxy
-            // We get the banks by the starting num of a card.
-            // even num - ShadyBank
-            // odd num - PrivateBank
-
             // We should store the message and send an akk
             // We should retry failed transactions 
             // We should be protected from double charge
             // We should implement idempotency
+            // We should have it in the state storage
+            try
+            {
+                var bank = _bankProvidersFactory.GetBankByCardNumber(checkoutReq.CardDetails.CardNumber);
 
-            // We can get a factory to get more banks
-            var bankResponse = await _bank.ProcessTransaction(checkoutReq);
-            
-            // AK TODO return rejected or smth
+                var bankProcessingResult = await bank.ProcessTransaction(checkoutReq);
+
+                var response = new CheckoutResponse
+                {
+                    Message = bankProcessingResult.Message,
+                    IsSuccess = bankProcessingResult.StatusCode == 0,
+                    Code = bankProcessingResult.StatusCode
+                };
+
+                return Ok(response);
+            }
+            catch (ArgumentException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(new ErrorDetails(ex.Message));
+            }
         }
     }
 }

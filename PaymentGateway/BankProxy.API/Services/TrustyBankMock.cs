@@ -30,8 +30,6 @@ namespace BankProxy.API.Services
 
         public bool IsIssuerOf(CardNumber cardNumber)
         {
-            // We should store a number
-            // We should have a case for not supported issuer
             return cardNumber.BankDigits != "0000 0";
         }
     }

@@ -16,7 +16,7 @@
 
             if (provider == null)
             {
-                throw new ArgumentException($"Unknow provider of card with provider id {cardNumber.BankDigits}");
+                throw new ArgumentException($"Unknow issuer of the card bank numbers: {cardNumber.BankDigits}");
             }
 
             return provider;

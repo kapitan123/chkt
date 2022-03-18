@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{E82853DC-D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankProxy.API", "BankProxy.API\BankProxy.API.csproj", "{5A89646B-458E-4B17-9BBD-225F1BAB445A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerchantPayment.API", "MerchantPayment.API\MerchantPayment.API.csproj", "{FF56627D-F218-4750-9DA5-2384BE4342CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,12 +26,17 @@ Global
 		{5A89646B-458E-4B17-9BBD-225F1BAB445A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A89646B-458E-4B17-9BBD-225F1BAB445A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A89646B-458E-4B17-9BBD-225F1BAB445A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF56627D-F218-4750-9DA5-2384BE4342CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF56627D-F218-4750-9DA5-2384BE4342CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF56627D-F218-4750-9DA5-2384BE4342CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF56627D-F218-4750-9DA5-2384BE4342CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5A89646B-458E-4B17-9BBD-225F1BAB445A} = {79B3C237-0341-4B55-A297-49C1A8D8AAAF}
+		{FF56627D-F218-4750-9DA5-2384BE4342CB} = {79B3C237-0341-4B55-A297-49C1A8D8AAAF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4B10D92-671C-4D18-B979-F0C33E2F6BED}

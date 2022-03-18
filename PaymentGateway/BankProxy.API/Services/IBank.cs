@@ -6,5 +6,8 @@
         public Task<BankResponse> ProcessTransaction(CheckoutRequest request);
 
         public bool IsIssuerOf(CardNumber cardNumber);
+
+        // AK TODO we can retrieve credentials form a store to submit to the banks
+        //public string IntegrationCredentials { get;}
     }
 }
