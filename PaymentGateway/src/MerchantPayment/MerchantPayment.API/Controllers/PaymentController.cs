@@ -30,6 +30,7 @@ namespace MerchantPayment.API.Controllers
             // AK TODO perform basic Validation
             var cardValidationResult = _validationService.Validate(submitReq.CardDetails);
 
+            //- CreatedAtAction(nameof(Get), new { id = Guid.NewGuid() }, payment.ToContract()) : BadRequest(errorMessage);
             // Mask CardNumber
             // submit to state
             // publish a PaymentCreatedEvent - publish so we can notify or count

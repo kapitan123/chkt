@@ -4,6 +4,7 @@
     {
         Created,
         Processing,
+        SentToProvider,
         Failed,
         Succeed
     }
