@@ -3,7 +3,7 @@ using MerchantPayment.API.IntegrationEvents.Events;
 
 namespace MerchantPayment.API.IntegrationEvents.EventHandlers
 {
-    public class PaymentValidationFinishedHandler
+    public class PaymentValidationFinishedHandler : IIntegrationEventHandler<PaymentValidationFinishedEvent>
     {
         private readonly IPaymentsRepo _payments;
         public PaymentValidationFinishedHandler(IPaymentsRepo payments)
@@ -18,7 +18,5 @@ namespace MerchantPayment.API.IntegrationEvents.EventHandlers
             // publish SendToProviderEvent
             throw new NotImplementedException();
         }
-
-
     }
 }

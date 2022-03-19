@@ -4,7 +4,7 @@ using MerchantPayment.API.Models.Persistance;
 
 namespace MerchantPayment.API.IntegrationEvents.EventHandlers
 {
-    public class RequestPaymentValidationHandler
+    public class RequestPaymentValidationHandler : IIntegrationEventHandler<PaymentCreatedEvent>
     {
         private readonly IPaymentsRepo _payments;
         public RequestPaymentValidationHandler(IPaymentsRepo payments)

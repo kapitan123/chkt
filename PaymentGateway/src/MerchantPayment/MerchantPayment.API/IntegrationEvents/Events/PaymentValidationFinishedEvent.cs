@@ -1,4 +1,4 @@
 ﻿namespace MerchantPayment.API.IntegrationEvents.Events
 {
-    public record PaymentValidationFinishedEvent(Guid Id, DateTime TimeStamp);
+    public record PaymentValidationFinishedEvent(Guid PaymentTransactionId, bool Result) : IntegrationEvent;
 }
