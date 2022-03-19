@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31624.102
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FFE215CC-4C7C-48B5-AA45-EE0FD837FBF7}"
 EndProject
@@ -22,11 +22,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankProxy.API", "src\BankPr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankProxy.API.UnitTest", "src\BankProxy\BankProxy.API.UnitTest\BankProxy.API.UnitTest.csproj", "{997560FA-F137-4FF3-97C7-130110FB2554}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus", "src\Common\EventBus\EventBus.csproj", "{2F01D726-4BB6-4CA0-969F-EB2A40BB5E4E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MerchantPayment.API", "src\MerchantPayment\MerchantPayment.API\MerchantPayment.API.csproj", "{90A1F0B7-DB68-496E-9051-6E96E9797BE3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MerchantPayment.API.UnitTests", "src\MerchantPayment\MerchantPayment.API.UnitTests\MerchantPayment.API.UnitTests.csproj", "{36DC9A90-4FD0-4184-8EF3-F1430DD83681}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus", "src\Common\EventBus.csproj", "{AC1F6472-B92F-40E6-BF33-2F6FA81FDB89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,10 +42,6 @@ Global
 		{997560FA-F137-4FF3-97C7-130110FB2554}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{997560FA-F137-4FF3-97C7-130110FB2554}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{997560FA-F137-4FF3-97C7-130110FB2554}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2F01D726-4BB6-4CA0-969F-EB2A40BB5E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F01D726-4BB6-4CA0-969F-EB2A40BB5E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F01D726-4BB6-4CA0-969F-EB2A40BB5E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F01D726-4BB6-4CA0-969F-EB2A40BB5E4E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{90A1F0B7-DB68-496E-9051-6E96E9797BE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{90A1F0B7-DB68-496E-9051-6E96E9797BE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90A1F0B7-DB68-496E-9051-6E96E9797BE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -54,6 +50,10 @@ Global
 		{36DC9A90-4FD0-4184-8EF3-F1430DD83681}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36DC9A90-4FD0-4184-8EF3-F1430DD83681}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36DC9A90-4FD0-4184-8EF3-F1430DD83681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC1F6472-B92F-40E6-BF33-2F6FA81FDB89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC1F6472-B92F-40E6-BF33-2F6FA81FDB89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC1F6472-B92F-40E6-BF33-2F6FA81FDB89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC1F6472-B92F-40E6-BF33-2F6FA81FDB89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,9 +64,9 @@ Global
 		{7E7EE7DA-B1D3-44FB-94D0-8910444F5B36} = {FFE215CC-4C7C-48B5-AA45-EE0FD837FBF7}
 		{B76AA08E-6112-43F7-84EC-5E6EFF6EAF3B} = {D7CB6E3B-C365-4744-8FD5-2C8E80A7D046}
 		{997560FA-F137-4FF3-97C7-130110FB2554} = {D7CB6E3B-C365-4744-8FD5-2C8E80A7D046}
-		{2F01D726-4BB6-4CA0-969F-EB2A40BB5E4E} = {3E005210-8E59-44E1-B83D-8DA6AC16AE74}
 		{90A1F0B7-DB68-496E-9051-6E96E9797BE3} = {7E7EE7DA-B1D3-44FB-94D0-8910444F5B36}
 		{36DC9A90-4FD0-4184-8EF3-F1430DD83681} = {7E7EE7DA-B1D3-44FB-94D0-8910444F5B36}
+		{AC1F6472-B92F-40E6-BF33-2F6FA81FDB89} = {3E005210-8E59-44E1-B83D-8DA6AC16AE74}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4B10D92-671C-4D18-B979-F0C33E2F6BED}

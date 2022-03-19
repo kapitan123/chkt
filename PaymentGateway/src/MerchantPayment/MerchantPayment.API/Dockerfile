@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["MerchantPayment.API/MerchantPayment.API.csproj", "MerchantPayment.API/"]
+COPY ["MerchantPayment/MerchantPayment.API/MerchantPayment.API.csproj", "MerchantPayment.API/"]
 RUN dotnet restore "MerchantPayment.API/MerchantPayment.API.csproj"
 COPY . .
-WORKDIR "/src/MerchantPayment.API"
+WORKDIR "/src/MerchantPayment/MerchantPayment.API"
 RUN dotnet build "MerchantPayment.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
