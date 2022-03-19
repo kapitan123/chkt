@@ -28,6 +28,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MerchantPayment.API.UnitTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus", "src\Common\EventBus.csproj", "{AC1F6472-B92F-40E6-BF33-2F6FA81FDB89}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dapr", "dapr", "{CCFA16F9-E8C0-4D23-B3CC-BDEF6FEB092F}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\dapr\payment-pubsub.yaml = deploy\dapr\payment-pubsub.yaml
+		deploy\dapr\payment-secrets.json = deploy\dapr\payment-secrets.json
+		deploy\dapr\payment-secretstore.yaml = deploy\dapr\payment-secretstore.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +74,7 @@ Global
 		{90A1F0B7-DB68-496E-9051-6E96E9797BE3} = {7E7EE7DA-B1D3-44FB-94D0-8910444F5B36}
 		{36DC9A90-4FD0-4184-8EF3-F1430DD83681} = {7E7EE7DA-B1D3-44FB-94D0-8910444F5B36}
 		{AC1F6472-B92F-40E6-BF33-2F6FA81FDB89} = {3E005210-8E59-44E1-B83D-8DA6AC16AE74}
+		{CCFA16F9-E8C0-4D23-B3CC-BDEF6FEB092F} = {EA0B5A00-D6DE-4FD8-BC8E-3894C35CD857}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4B10D92-671C-4D18-B979-F0C33E2F6BED}

@@ -1,0 +1,18 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: pubsub
+  namespace: payment
+spec:
+# Temporarily use Redis for pub/sub while waiting for https://github.com/dapr/components-contrib/issues/1372 to get resolved.
+  type: pubsub.redis
+  version: v1
+  metadata:
+  - name: redisHost
+    value: redis:6379
+  - name: redisPassword
+    secretKeyRef:
+      name: State.RedisPassword
+      key: State.RedisPassword
+auth:
+  secretStore: payment-secretstore
