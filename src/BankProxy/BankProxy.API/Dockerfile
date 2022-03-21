@@ -10,7 +10,7 @@ WORKDIR /src
 COPY ["BankProxy.API/BankProxy.API.csproj", "BankProxy.API/"]
 RUN dotnet restore "BankProxy.API/BankProxy.API.csproj"
 COPY . .
-WORKDIR "/src/BankProxy/BankProxy.API"
+WORKDIR "/src/BankProxy.API"
 RUN dotnet build "BankProxy.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
