@@ -7,7 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FFE215CC-4C7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{D3B90EA8-D072-4B3A-B74B-26FA3051AD07}"
 	ProjectSection(SolutionItems) = preProject
-		docs\Structure.txt = docs\Structure.txt
+		docs\how to run.txt = docs\how to run.txt
+		docs\structure and assumptions.txt = docs\structure and assumptions.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{EA0B5A00-D6DE-4FD8-BC8E-3894C35CD857}"
@@ -54,7 +55,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{
 		deploy\helm\templates\namespace.yaml = deploy\helm\templates\namespace.yaml
 		deploy\helm\templates\redis.yaml = deploy\helm\templates\redis.yaml
 		deploy\helm\templates\secrets.yaml = deploy\helm\templates\secrets.yaml
-		deploy\helm\templates\webshoppingagg.yaml = deploy\helm\templates\webshoppingagg.yaml
 		deploy\helm\templates\zipkin.yaml = deploy\helm\templates\zipkin.yaml
 	EndProjectSection
 EndProject

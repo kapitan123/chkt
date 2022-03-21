@@ -1,0 +1,13 @@
+Solution requires minikube or docker-for-desktop and helm
+
+Install: Helm https://helm.sh/docs/intro/install/
+Install: Dapr CLI https://docs.dapr.io/getting-started/install-dapr-cli/
+Install: kubectl https://kubernetes.io/docs/tasks/tools/
+
+1) Run: $ dapr init -k
+
+2) Go to: deploy\helm 
+	Run: $ helm install payments-test .
+
+3) Teardown after tests
+	Run: $ helm uninstall payments-test

@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
         - name: bank-proxy-api
-          image: paymentdapr/bank-proxy.api:latest
+          image: kapitan123/bank-proxy.api:latest
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
