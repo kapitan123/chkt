@@ -1,6 +1,6 @@
 ﻿namespace MerchantPayment.API.IntegrationEvents.Events
 {
-    public class SendToBankCommand
+    public class PaymentStatusChangedToReadyForExternalTransaction
     {
         public Guid Id { get; set; }
 

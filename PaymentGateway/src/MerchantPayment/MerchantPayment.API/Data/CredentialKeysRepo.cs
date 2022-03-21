@@ -1,10 +1,11 @@
 ﻿using MerchantPayment.API.Models.Persistance;
 namespace MerchantPayment.API.Data
 {
-    // AK TODO Extract to a microservice
+    // AK TODO Can be extracted to an external service
+    // We can join it to Auth service with the fraud detection as well
     public class CredentialKeysRepo: ICredentialKeysRepo
     {
-        private Dictionary<Guid, MerchantKey> _credentialKeys = new ();
+        private readonly Dictionary<Guid, MerchantKey> _credentialKeys = new ();
 
         public CredentialKeysRepo()
         {
@@ -23,6 +24,10 @@ namespace MerchantPayment.API.Data
 
         public async Task<MerchantKey> GetById(Guid id)
         {
+            // Simulating an external call
+            await Task.Delay(10);
+            
+            // AK TODO should go to the destributed cache
             return _credentialKeys[id];
         }
     }

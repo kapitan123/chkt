@@ -11,7 +11,7 @@ namespace MerchantPayment.API.UnitTests.IntegrationEvents.EventHandlers
     {
         private PaymentValidationFinishedHandler? _paymentValidationFinishedHandler;
         private Mock<IPaymentsRepo> _repoMock = new();
-        private PaymentValidationFinishedEvent? _fakeEvent;
+        private PaymentBankTransactionFailedEvent? _fakeEvent;
 
         public RequestPaymentValidationHandlerTests()
         {
@@ -20,7 +20,7 @@ namespace MerchantPayment.API.UnitTests.IntegrationEvents.EventHandlers
 
             _paymentValidationFinishedHandler = new PaymentValidationFinishedHandler(_repoMock.Object);
 
-            _fakeEvent = new PaymentValidationFinishedEvent(Guid.Parse("f750fb47-b2c1-4bec-9ee1-55fb7843a656"), default);
+            _fakeEvent = new PaymentBankTransactionFailedEvent(Guid.Parse("f750fb47-b2c1-4bec-9ee1-55fb7843a656"), "test");
         }
 
         [Test]

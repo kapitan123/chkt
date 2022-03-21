@@ -4,6 +4,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace MerchantPayment.API.Infrastructure.Middleware
 {
+    // AK TODO This middleware is not invoked
     public class ValidateMerchanKeyMiddleware
     {
         private static readonly string HEADER_MERCHANT_KEY = "X-MERCHANT-KEY";
@@ -20,7 +21,6 @@ namespace MerchantPayment.API.Infrastructure.Middleware
 
             var merchantKey = ExtractMerchantId(headers);
 
-            // AK TODO we should cashe this call
             var merchant = await _merchants.GetById(merchantKey);
 
             ValidateExpirationAndState(merchant);

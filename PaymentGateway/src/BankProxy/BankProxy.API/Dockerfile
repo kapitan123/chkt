@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["BankProxy/BankProxy.API/BankProxy.API.csproj", "BankProxy.API/"]
+COPY ["BankProxy.API/BankProxy.API.csproj", "BankProxy.API/"]
 RUN dotnet restore "BankProxy.API/BankProxy.API.csproj"
 COPY . .
 WORKDIR "/src/BankProxy/BankProxy.API"
