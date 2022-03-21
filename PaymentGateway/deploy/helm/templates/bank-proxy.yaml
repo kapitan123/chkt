@@ -1,0 +1,77 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: bank-proxy-cm
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: payment
+    service: bank-proxy
+data:
+  ASPNETCORE_ENVIRONMENT: Development
+  ASPNETCORE_URLS: http://0.0.0.0:80
+
+---
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: bank-proxy
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: payment
+    service: bank-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: bank-proxy
+  template:
+    metadata:
+      labels:
+        app: payment
+        service: bank-proxy
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "bank-proxy-api"
+        dapr.io/app-port: "80"
+        dapr.io/config: "dapr-config"
+        dapr.io/log-as-json: "true"
+    spec:
+      containers:
+        - name: bank-proxy-api
+          image: paymentdapr/bank-proxy.api:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: bank-proxy-cm
+          readinessProbe:
+            httpGet:
+              path: /hc
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: bank-proxy-api
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: payment
+    service: bank-proxy
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30005
+      protocol: TCP
+      name: http
+  selector:
+    service: bank-proxy

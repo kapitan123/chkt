@@ -4,7 +4,6 @@
     {
         private readonly IEnumerable<IBank> _registeredProviders;
 
-        // AK TODO How to register an array of implementations
         public BankFactory(IEnumerable<IBank> registeredProviders)
         {
             _registeredProviders = registeredProviders;

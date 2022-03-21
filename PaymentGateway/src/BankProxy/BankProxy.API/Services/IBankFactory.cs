@@ -1,5 +1,4 @@
-﻿
-namespace BankProxy.API.Services
+﻿namespace BankProxy.API.Services
 {
     public interface IBankFactory
     {

@@ -1,3 +1,5 @@
+Solution is based on Dapr framework and it's reference project
+
 MerchantPayment.API
 	- Public API
 	- Performs Basic Validation to fail fast

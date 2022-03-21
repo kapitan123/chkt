@@ -33,6 +33,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dapr", "dapr", "{CCFA16F9-E
 		deploy\dapr\payment-pubsub.yaml = deploy\dapr\payment-pubsub.yaml
 		deploy\dapr\payment-secrets.json = deploy\dapr\payment-secrets.json
 		deploy\dapr\payment-secretstore.yaml = deploy\dapr\payment-secretstore.yaml
+		payment-statestore.yaml = payment-statestore.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "helm", "helm", "{FA41E19F-CA0C-4D19-9969-81FDB6F37DE4}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\helm\Chart.yaml = deploy\helm\Chart.yaml
+		deploy\helm\values.yaml = deploy\helm\values.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{094C9FE4-2A18-455D-91B5-8311F75CE8D6}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\helm\templates\apigateway.yaml = deploy\helm\templates\apigateway.yaml
+		deploy\helm\templates\bank-proxy.yaml = deploy\helm\templates\bank-proxy.yaml
+		deploy\helm\templates\dapr-config.yaml = deploy\helm\templates\dapr-config.yaml
+		deploy\helm\templates\dapr-pubsub.yaml = deploy\helm\templates\dapr-pubsub.yaml
+		deploy\helm\templates\dapr-secrets.yaml = deploy\helm\templates\dapr-secrets.yaml
+		deploy\helm\templates\dapr-state.yaml = deploy\helm\templates\dapr-state.yaml
+		deploy\helm\templates\merchant-payment.yaml = deploy\helm\templates\merchant-payment.yaml
+		deploy\helm\templates\namespace.yaml = deploy\helm\templates\namespace.yaml
+		deploy\helm\templates\redis.yaml = deploy\helm\templates\redis.yaml
+		deploy\helm\templates\secrets.yaml = deploy\helm\templates\secrets.yaml
+		deploy\helm\templates\webshoppingagg.yaml = deploy\helm\templates\webshoppingagg.yaml
+		deploy\helm\templates\zipkin.yaml = deploy\helm\templates\zipkin.yaml
 	EndProjectSection
 EndProject
 Global
@@ -75,6 +98,8 @@ Global
 		{36DC9A90-4FD0-4184-8EF3-F1430DD83681} = {7E7EE7DA-B1D3-44FB-94D0-8910444F5B36}
 		{AC1F6472-B92F-40E6-BF33-2F6FA81FDB89} = {3E005210-8E59-44E1-B83D-8DA6AC16AE74}
 		{CCFA16F9-E8C0-4D23-B3CC-BDEF6FEB092F} = {EA0B5A00-D6DE-4FD8-BC8E-3894C35CD857}
+		{FA41E19F-CA0C-4D19-9969-81FDB6F37DE4} = {EA0B5A00-D6DE-4FD8-BC8E-3894C35CD857}
+		{094C9FE4-2A18-455D-91B5-8311F75CE8D6} = {FA41E19F-CA0C-4D19-9969-81FDB6F37DE4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4B10D92-671C-4D18-B979-F0C33E2F6BED}

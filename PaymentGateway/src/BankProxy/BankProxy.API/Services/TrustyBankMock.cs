@@ -1,11 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace BankProxy.API.Services
+﻿namespace BankProxy.API.Services
 {
-    // Probably need an Interface
     public class TrustyBankMock : IBank
     {
-        // AK TODO: Mocking based on the comment
         private readonly Dictionary<string, BankResponse> _commentToResponseMap = new();
 
         public TrustyBankMock()
@@ -18,7 +14,8 @@ namespace BankProxy.API.Services
 
         public async Task<BankResponse> ProcessTransaction(CheckoutRequest request)
         {
-            await Task.Delay(10);
+            // Simulating bank processing
+            await Task.Delay(500);
 
             var response = _commentToResponseMap.GetValueOrDefault(
                            request.Message,

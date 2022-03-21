@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace BankProxy.API.Services
+﻿namespace BankProxy.API.Services
 {
     public class ShadyBankMock : IBank
     {
@@ -11,7 +9,8 @@ namespace BankProxy.API.Services
 
         public async Task<BankResponse> ProcessTransaction(CheckoutRequest request)
         {
-            await Task.Delay(10);
+            // Simulating bank processing
+            await Task.Delay(500);
 
             var response = new BankResponse(0, "Always Sucess");
 
