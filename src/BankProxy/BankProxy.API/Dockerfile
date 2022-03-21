@@ -7,11 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["BankProxy.API/BankProxy.API.csproj", "BankProxy.API/"]
-RUN dotnet restore "BankProxy.API/BankProxy.API.csproj"
+
+COPY ["src/BankProxy/BankProxy.API/BankProxy.API.csproj", "src/BankProxy/BankProxy.API/"]
+COPY ["src/Common/EventBus.csproj", "src/Common/"]
+COPY ["src/MerchantPayment/MerchantPayment.API/MerchantPayment.API.csproj", "src/MerchantPayment/MerchantPayment.API/"]
+COPY ["NuGet.config", "./"]
+COPY ["PaymentGateway.sln", "./"]
+RUN dotnet restore "src/BankProxy/BankProxy.API/BankProxy.API.csproj"
+
 COPY . .
-WORKDIR "/src/BankProxy.API"
-RUN dotnet build "BankProxy.API.csproj" -c Release -o /app/build
+WORKDIR "/src/src/BankProxy/BankProxy.API"
 
 FROM build AS publish
 RUN dotnet publish "BankProxy.API.csproj" -c Release -o /app/publish
