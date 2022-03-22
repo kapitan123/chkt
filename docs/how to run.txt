@@ -19,3 +19,8 @@ docker push kapitan123/bank-proxy.api
 
 docker build -f src\MerchantPayment\MerchantPayment.API\Dockerfile -t kapitan123/merchant-payment.api .
 docker push kapitan123/merchant-payment.api
+
+
+Health UI at http://localhost:30007/healthchecks-ui.
+
+Backend is exposed on http://localhost:80
