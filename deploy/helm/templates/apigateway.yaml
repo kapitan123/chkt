@@ -124,7 +124,7 @@ spec:
   template:
     metadata:
       labels:
-        app: eshop
+        app: payment
         service: apigateway
       annotations:
         dapr.io/enabled: "true"
