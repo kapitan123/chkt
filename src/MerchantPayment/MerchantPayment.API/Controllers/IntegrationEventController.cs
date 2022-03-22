@@ -7,9 +7,9 @@ namespace MerchantPayment.API.Controllers
     [Route("[controller]")]
     public class IntegrationEventController
     {
-        private readonly ILogger<PaymentController> _logger;
+        private readonly ILogger<PaymentsController> _logger;
 
-        public IntegrationEventController(ILogger<PaymentController> logger)
+        public IntegrationEventController(ILogger<PaymentsController> logger)
         {
             _logger = logger;
         }

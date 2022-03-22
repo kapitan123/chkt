@@ -1,20 +1,17 @@
-Solution is based on Dapr framework and it's reference project
+Solution is based on Dapr framework and it's reference projects
 
 MerchantPayment.API
 	- Public API
-	- Performs Basic Validation to fail fast
-	- Uses value of "X-MERCHANT-KEY" to authorise requests
-		- CredentialKeysRepo Mocks another storage which should be extracted to external storage
-	- Card message is used for easier testing of mocks
-	- PaymentCreatedEvent is not used, but can be to count created payments or send a notification
-	- Uses Internal Mock of a fraud detection Service, which can be a separate microservice
+	- Performs Basic Validation of input parameters
+	- Uses value of "X-MERCHANT-KEY" to authenticate requests
+		- CredentialKeysRepo mocks external storage 
+	- CardDetails.Message is used for testing of mocks
 
 BankProxy.API
-	- A proxy for bank requests. Uses two mock banks. 
+	- Proxy for bank requests. Uses two mocked banks. 
 	- All cards starting with 000000 belongs to one, the rest to other.
-	- We assupe that we have same responses from both banks. So we don't need to add mappings.
-	- We assume that we store bank integration credentials in memory
+	- We assume that we have same responses from both banks. So we don't need to add mappings.
+	- /checkout is idempotent in case of message duplication
 
-Unit test are skipped
-Some Entities and DTO are not decoupled
+Some Entities and DTO are not separated 
 

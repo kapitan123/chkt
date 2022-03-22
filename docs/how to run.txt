@@ -12,15 +12,11 @@ Install: kubectl https://kubernetes.io/docs/tasks/tools/
 3) Teardown after tests
 	Run: $ helm uninstall payments-test
 
+4) Use Postman collection or call http://localhost:80
 
-- In case you want to rebuild containers use 
-docker build -f src\BankProxy\BankProxy.API\Dockerfile -t kapitan123/bank-proxy.api .
-docker push kapitan123/bank-proxy.api
-
-docker build -f src\MerchantPayment\MerchantPayment.API\Dockerfile -t kapitan123/merchant-payment.api .
-docker push kapitan123/merchant-payment.api
-
+- Update images
+docker build -f src\BankProxy\BankProxy.API\Dockerfile -t kapitan123/bank-proxy.api .; docker push kapitan123/bank-proxy.api
+docker build -f src\MerchantPayment\MerchantPayment.API\Dockerfile -t kapitan123/merchant-payment.api .; docker push kapitan123/merchant-payment.api
 
 Health UI at http://localhost:30007/healthchecks-ui.
 
-Backend is exposed on http://localhost:80

@@ -1,7 +1,3 @@
-using MerchantPayment.API.Data;
-using MerchantPayment.API.Models.DTO;
-using MerchantPayment.API.Models.Persistance;
-using MerchantPayment.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -10,12 +6,12 @@ namespace MerchantPayment.API.Controllers
     [ApiController]
     [Route("[controller]")]
     [ApiVersion("1.0")]
-    public class PaymentController : ControllerBase
+    public class PaymentsController : ControllerBase
     {
-        private readonly ILogger<PaymentController> _logger;
+        private readonly ILogger<PaymentsController> _logger;
         private readonly IValidationService _validationService;
         private readonly IPaymentsRepo _paymentsRepo;
-        public PaymentController(ILogger<PaymentController> logger, IValidationService validationService, IPaymentsRepo paymentsRepo)
+        public PaymentsController(ILogger<PaymentsController> logger, IValidationService validationService, IPaymentsRepo paymentsRepo)
         {
             _logger = logger;
             _validationService = validationService;
@@ -30,6 +26,10 @@ namespace MerchantPayment.API.Controllers
             // AK TODO perform basic Validation
             var cardValidationResult = _validationService.Validate(submitReq.CardDetails);
 
+            if (!cardValidationResult.IsValid)
+            {
+                return BadRequest(new ErrorDetails(cardValidationResult.Errors.ToArray()));
+            }
             //- CreatedAtAction(nameof(Get), new { id = Guid.NewGuid() }, payment.ToContract()) : BadRequest(errorMessage);
             // Mask CardNumber
             // submit to state
@@ -40,7 +40,7 @@ namespace MerchantPayment.API.Controllers
         }
 
         // AK TODO should separate DTO and persistance
-        [HttpPost("{id}/details")]
+        [HttpGet("{id}/details")]
         [ProducesResponseType(typeof(PaymentTransaction), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ErrorDetails), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ErrorDetails), (int)HttpStatusCode.BadRequest)]
