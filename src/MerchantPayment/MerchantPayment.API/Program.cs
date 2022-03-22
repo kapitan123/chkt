@@ -8,6 +8,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDaprClient();
 builder.AddCustomHealthChecks();
+builder.AddCustomServices();
 
 var app = builder.Build();
 

@@ -1,13 +1,11 @@
-﻿using MerchantPayment.API.Models.Persistance;
-namespace MerchantPayment.API.Data
+﻿namespace MerchantPayment.API.Data
 {
-    // AK TODO Can be extracted to an external service
-    // We can join it to Auth service with the fraud detection as well
-    public class CredentialKeysRepo: ICredentialKeysRepo
+    // AK TODO this is a mock of credentials storage. In practice  this will be a separate sevice
+    public class MerchantKeysRepositoryMock : IMerchantKeysRepository
     {
         private readonly Dictionary<Guid, MerchantKey> _credentialKeys = new ();
 
-        public CredentialKeysRepo()
+        public MerchantKeysRepositoryMock()
         {
             // seed data
             var normalMerhcant = new MerchantKey(Guid.Parse("34f25424-088c-482a-a75e-8ccbbecf8112"),
@@ -22,12 +20,11 @@ namespace MerchantPayment.API.Data
             _credentialKeys.Add(blockedMerhcant.Id, blockedMerhcant);
         }
 
-        public async Task<MerchantKey> GetById(Guid id)
+        public async Task<MerchantKey> GetByIdAsync(Guid id)
         {
             // Simulating an external call
             await Task.Delay(10);
             
-            // AK TODO should go to the destributed cache
             return _credentialKeys[id];
         }
     }

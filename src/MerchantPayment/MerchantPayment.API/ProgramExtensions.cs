@@ -1,4 +1,6 @@
-﻿namespace MerchantPayment.API;
+﻿using Microsoft.eShopOnDapr.Services.Basket.API.Infrastructure.Repositories;
+
+namespace MerchantPayment.API;
 
 public static class ProgramExtensions
 {
@@ -10,8 +12,11 @@ public static class ProgramExtensions
                 .AddDapr();
     }
 
-    public static void AddValidations(this WebApplicationBuilder builder)
+    public static void AddCustomServices(this WebApplicationBuilder builder)
     {
+        var services = builder.Services;
 
+        services.AddSingleton<IPaymentsRepository, PaymentsRepository>();
+        services.AddSingleton<IMerchantKeysRepository, MerchantKeysRepositoryMock>();
     }
 }

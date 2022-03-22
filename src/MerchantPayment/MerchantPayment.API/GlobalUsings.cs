@@ -11,3 +11,4 @@ global using MerchantPayment.API.Data;
 global using MerchantPayment.API.Models.DTO;
 global using MerchantPayment.API.Models.Persistance;
 global using MerchantPayment.API.Services;
+global using MerchantPayment.API.IntegrationEvents.Events;

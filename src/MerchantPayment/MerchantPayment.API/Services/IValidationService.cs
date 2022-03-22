@@ -1,9 +1,6 @@
-﻿using MerchantPayment.API.Models.DTO;
+﻿namespace MerchantPayment.API.Services;
 
-namespace MerchantPayment.API.Services
+public interface IValidationService
 {
-    public interface IValidationService
-    {
-        ValidationResult Validate(CardDetails details);
-    }
+    ValidationResult Validate(CardDetails details);
 }
