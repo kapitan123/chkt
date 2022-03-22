@@ -30,6 +30,7 @@ public class PaymentsController : ControllerBase
         {
             return BadRequest(new ErrorDetails(cardValidationResult.Errors.ToArray()));
         }
+        var id = await _paymentsRepo.CreatePaymentAsync(submitReq);
         //- CreatedAtAction(nameof(Get), new { id = Guid.NewGuid() }, payment.ToContract()) : BadRequest(errorMessage);
         // Mask CardNumber
         // submit to state

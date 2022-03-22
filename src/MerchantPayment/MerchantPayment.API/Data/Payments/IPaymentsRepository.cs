@@ -2,7 +2,7 @@
 
 public interface IPaymentsRepository
 {
-    Task<Guid> CreatePaymentAsync(PaymentTransaction req);
+    Task<Guid> CreatePaymentAsync(SubmitPaymentRequest req);
     Task<PaymentTransaction> GetByIdAsync(Guid paymentId);
     Task UpdateStateAsync(Guid paymentId, PaymentStatus newStatus);
     Task UpdateValidationStateAsync(Guid paymentId, bool newValidationState);
