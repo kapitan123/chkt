@@ -1,4 +1,4 @@
-Solution requires minikube or docker-for-desktop and helm
+Solution requires minikube or docker-for-desktop with kubernetes support and helm
 
 Install: Helm https://helm.sh/docs/intro/install/
 Install: Dapr CLI https://docs.dapr.io/getting-started/install-dapr-cli/

@@ -9,7 +9,8 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 
 COPY ["src/BankProxy/BankProxy.API/BankProxy.API.csproj", "src/BankProxy/BankProxy.API/"]
-COPY ["src/Common/EventBus.csproj", "src/Common/"]
+COPY ["src/Common/EventBus/EventBus.csproj", "src/Common/EventBus/"]
+COPY ["src/Common/Healthchecks/Healthchecks/Healthchecks.csproj", "src/Common/Healthchecks/Healthchecks/"]
 COPY ["src/MerchantPayment/MerchantPayment.API/MerchantPayment.API.csproj", "src/MerchantPayment/MerchantPayment.API/"]
 COPY ["NuGet.config", "./"]
 COPY ["PaymentGateway.sln", "./"]
