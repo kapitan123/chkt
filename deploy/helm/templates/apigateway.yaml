@@ -24,9 +24,9 @@ data:
               codec_type: auto
               stat_prefix: ingress_http
               route_config:
-                name: eshop_backend_route
+                name: payment_backend_route
                 virtual_hosts:
-                - name: eshop_backend
+                - name: payment_backend
                   domains:
                   - "*"
                   cors:
@@ -38,61 +38,19 @@ data:
                     allow_headers: "authorization, content-type, x-requestid, x-requested-with, x-signalr-user-agent"
                     allow_credentials: true
                   routes:
-                  - name: "pics"
+                  - name: "bank-proxy-long"
                     match:
-                      prefix: "/c/pics/"
+                      prefix: "/bank-proxy-api/"
                     route:
                       auto_host_rewrite: true
-                      prefix_rewrite: "/pics/"
-                      cluster: catalog
-                  - name: "c-short"
-                    match:
-                      prefix: "/c/"
-                    route:
-                      auto_host_rewrite: true
-                      prefix_rewrite: "/v1.0/invoke/catalog-api/method/"
+                      prefix_rewrite: "/v1.0/invoke/bank-proxy-api/method/"
                       cluster: dapr
-                  - name: "c-long"
+                  - name: "merchant-payment-long"
                     match:
-                      prefix: "/catalog-api/"
+                      prefix: "/merchant-payment-api/"
                     route:
                       auto_host_rewrite: true
-                      prefix_rewrite: "/v1.0/invoke/catalog-api/method/"
-                      cluster: dapr
-                  - name: "o-short"
-                    match:
-                      prefix: "/o/"
-                    route:
-                      auto_host_rewrite: true
-                      prefix_rewrite: "/v1.0/invoke/ordering-api/method/"
-                      cluster: dapr
-                  - name: "o-long"
-                    match:
-                      prefix: "/ordering-api/"
-                    route:
-                      auto_host_rewrite: true
-                      prefix_rewrite: "/v1.0/invoke/ordering-api/method/"
-                      cluster: dapr
-                  - name: "h-long"
-                    match:
-                      prefix: "/hub/notificationhub"
-                    route:
-                      auto_host_rewrite: true
-                      cluster: ordering-api
-                      timeout: 300s
-                  - name: "b-short"
-                    match:
-                      prefix: "/b/"
-                    route:
-                      auto_host_rewrite: true
-                      prefix_rewrite: "/v1.0/invoke/basket-api/method/"
-                      cluster: dapr
-                  - name: "b-long"
-                    match:
-                      prefix: "/basket-api/"
-                    route:
-                      auto_host_rewrite: true
-                      prefix_rewrite: "/v1.0/invoke/basket-api/method/"
+                      prefix_rewrite: "/v1.0/invoke/merchant-payment-api/method/"
                       cluster: dapr
                   - name: "agg"
                     match:
@@ -131,21 +89,21 @@ data:
         - socket_address:
             address: 127.0.0.1
             port_value: 3500
-      - name: catalog
+      - name: bank-proxy
         connect_timeout: 0.25s
         type: strict_dns
         lb_policy: round_robin
         hosts:
         - socket_address:
-            address: catalog-api
+            address: bank-proxy-api
             port_value: 80
-      - name: ordering-api
+      - name: merchant-payment
         connect_timeout: 0.25s
         type: strict_dns
         lb_policy: round_robin
         hosts:
         - socket_address:
-            address: ordering-api
+            address: merchant-payment
             port_value: 80
 
 ---
@@ -156,7 +114,7 @@ metadata:
   name: apigateway
   namespace: {{ .Values.namespace }}
   labels:
-    app: eshop
+    app: payment
     service: apigateway
 spec:
   replicas: 1
@@ -207,7 +165,7 @@ metadata:
   name: apigateway
   namespace: {{ .Values.namespace }}
   labels:
-    app: eshop
+    app: payment
     service: apigateway
 spec:
   type: NodePort

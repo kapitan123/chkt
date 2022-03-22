@@ -18,9 +18,3 @@ BankProxy.API
 Unit test are skipped
 Some Entities and DTO are not decoupled
 
-- In case you want to rebuild containers use 
-docker build -f src\BankProxy\BankProxy.API\Dockerfile -t kapitan123/bank-proxy.api .
-docker push kapitan123/bank-proxy.api
-
-docker build -f src\MerchantPayment\MerchantPayment.API\Dockerfile -t kapitan123/merchant-payment.api .
-docker push kapitan123/merchant-payment.api

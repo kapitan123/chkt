@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
         - name: merchant-payment-api
-          image: paymentdapr/merchant-payment.api:latest
+          image: kapitan123/merchant-payment.api:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80

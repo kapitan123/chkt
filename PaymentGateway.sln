@@ -34,7 +34,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dapr", "dapr", "{CCFA16F9-E
 		deploy\dapr\payment-pubsub.yaml = deploy\dapr\payment-pubsub.yaml
 		deploy\dapr\payment-secrets.json = deploy\dapr\payment-secrets.json
 		deploy\dapr\payment-secretstore.yaml = deploy\dapr\payment-secretstore.yaml
-		payment-statestore.yaml = payment-statestore.yaml
+		deploy\dapr\payment-statestore.yaml = deploy\dapr\payment-statestore.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "helm", "helm", "{FA41E19F-CA0C-4D19-9969-81FDB6F37DE4}"
