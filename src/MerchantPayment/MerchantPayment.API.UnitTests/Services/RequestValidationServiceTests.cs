@@ -31,8 +31,6 @@ namespace MerchantPayment.API.UnitTests.Services
             Assert.Pass();
         }
 
-        // AK TODO There are problems with dateTime.Now but a nise place to flex my knowledge
-        // makes sense to expose these methods
         [Test]
         public void Should_Fail_On_Invalid_ExpirationDay()
         {
