@@ -2,5 +2,5 @@
 
 public interface IMerchantKeysRepository
 {
-    Task<MerchantKey> GetByIdAsync(Guid id);
+    Task<MerchantKey?> GetByIdAsync(Guid id);
 }

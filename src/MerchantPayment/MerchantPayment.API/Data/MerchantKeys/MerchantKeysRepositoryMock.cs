@@ -20,11 +20,16 @@ public class MerchantKeysRepositoryMock : IMerchantKeysRepository
         _credentialKeys.Add(blockedMerhcant.Id, blockedMerhcant);
     }
 
-    public async Task<MerchantKey> GetByIdAsync(Guid id)
+    public async Task<MerchantKey?> GetByIdAsync(Guid id)
     {
         // Simulating an external call
         await Task.Delay(10);
-            
+
+        if (!_credentialKeys.ContainsKey(id))
+        {
+            return null;
+        }
+
         return _credentialKeys[id];
     }
 }

@@ -1,3 +1,4 @@
+using Common.EventBus.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -9,11 +10,15 @@ namespace BankProxy.API.Controllers
     {
         private readonly ILogger<TransactionsController> _logger;
         private readonly IBankFactory _bankProvidersFactory;
+        private readonly IEventBus _eventBus;
 
-        public TransactionsController(ILogger<TransactionsController> logger, IBankFactory bankProvidersFactory)
+        public TransactionsController(ILogger<TransactionsController> logger, 
+            IBankFactory bankProvidersFactory, 
+            IEventBus eventBus)
         {
             _logger = logger;
             _bankProvidersFactory = bankProvidersFactory;
+            _eventBus = eventBus;
         }
 
         // AK TODO should react to events as well

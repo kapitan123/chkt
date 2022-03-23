@@ -1,5 +1,23 @@
-﻿namespace MerchantPayment.API.Models.DTO;
+﻿using System.Collections.Generic;
 
-// AK TODO should be a class
+namespace MerchantPayment.API.Models.DTO;
 
-public record ErrorDetails(string[] Details);
+public class ErrorDetails
+{
+    public string[] Details { get; set; }
+
+    public ErrorDetails()
+    {
+        Details  = Array.Empty<string>();
+    }
+
+    public ErrorDetails(string error)
+    {
+        Details = new string[] { error };
+    }
+
+    public ErrorDetails(IEnumerable<string> errors)
+    {
+        Details = errors.ToArray();
+    }
+};

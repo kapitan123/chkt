@@ -21,19 +21,12 @@ public static class ProgramExtensions
         services.AddTransient<IValidationService, ValidationService>();
     }
 
-    public static IApplicationBuilder UseValidateMerchantKey(this IApplicationBuilder builder)
-    {
-        return builder.UseMiddleware<ValidateMerchanKeyMiddleware>();
-    }
-
     public static void AddMerchantKeyAuthentication(this WebApplicationBuilder builder)
     {
         // AK TODO DefaultChallengeScheme is redundant
-        builder.Services.AddAuthentication(options =>
-        {
-            options.DefaultAuthenticateScheme = MerchantKeyAuthenticationOptions.DefaultScheme;
-            options.DefaultChallengeScheme = MerchantKeyAuthenticationOptions.DefaultScheme;
-        })
-        .AddScheme<MerchantKeyAuthenticationOptions, MerchantKeyAuthenticationHandler>(MerchantKeyAuthenticationOptions.DefaultScheme, options => { });
+        builder.Services.AddAuthentication(o => o.DefaultAuthenticateScheme = MerchantKeyAuthenticationOptions.DefaultScheme
+        )
+        .AddScheme<MerchantKeyAuthenticationOptions, MerchantKeyAuthenticationHandler>
+        (MerchantKeyAuthenticationOptions.DefaultScheme, options => { });
     }
 }
