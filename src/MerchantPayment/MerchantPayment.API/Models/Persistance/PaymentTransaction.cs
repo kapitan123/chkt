@@ -1,14 +1,13 @@
 ﻿namespace MerchantPayment.API.Models.Persistance;
 
-// This should be a class
-public record PaymentTransaction(Guid Id, 
-    PaymentAmount PaymentAmount, 
-    CardDetails CardDetails, // AK TODO we store only masked card number and an encrypted card
-    bool ValidationStatus,
-    PaymentStatus Status,
-    string StatusReason, // AK TODO error messages
-    DateTime CreatedOn,
-    string Message,
-    string BankReference // AK TODO set after we finished out transaction
-    );
-
+public class PaymentTransaction
+{
+    public Guid Id { get; set; }
+    public PaymentAmount PaymentAmount { get; set; }
+    public CardDetails CardDetails { get; set; }
+    public PaymentStatus Status { get; set; }
+    public string StatusReason { get; set; } = "";
+    public DateTime CreatedOn { get; set; }
+    public string Message { get; set; } = "";
+    public string BankReference { get; set; } = "";
+}

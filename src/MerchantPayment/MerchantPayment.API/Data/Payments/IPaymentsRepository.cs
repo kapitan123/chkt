@@ -2,8 +2,8 @@
 
 public interface IPaymentsRepository
 {
-    Task<Guid> CreatePaymentAsync(SubmitPaymentRequest req);
+    Task<Guid> CreatePaymentAsync(PaymentAmount amount, CardDetails cardDetails, string message);
     Task<PaymentTransaction> GetByIdAsync(Guid paymentId);
-    Task UpdateStateAsync(Guid paymentId, PaymentStatus newStatus);
-    Task UpdateValidationStateAsync(Guid paymentId, bool newValidationState);
+    Task UpdateStatusAsync(Guid paymentId, PaymentStatus newStatus);
+    Task FinalizeSuccess(Guid paymentId, string bankReference);
 }

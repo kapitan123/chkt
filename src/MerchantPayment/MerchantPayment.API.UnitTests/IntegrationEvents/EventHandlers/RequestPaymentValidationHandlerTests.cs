@@ -10,13 +10,13 @@ namespace MerchantPayment.API.UnitTests.IntegrationEvents.EventHandlers
     public class RequestPaymentValidationHandlerTests
     {
         private PaymentValidationFinishedHandler? _paymentValidationFinishedHandler;
-        private Mock<IPaymentsRepo> _repoMock = new();
+        private Mock<IPaymentsRepository> _repoMock = new();
         private PaymentBankTransactionFailedEvent? _fakeEvent;
 
         public RequestPaymentValidationHandlerTests()
         {
-            _repoMock = new Mock<IPaymentsRepo>();
-            _repoMock.Setup(m => m.UpdateState(It.IsAny<Guid>(), It.IsAny<PaymentStatus>()));
+            _repoMock = new Mock<IPaymentsRepository>();
+            _repoMock.Setup(m => m.UpdateStatusAsync(It.IsAny<Guid>(), It.IsAny<PaymentStatus>()));
 
             _paymentValidationFinishedHandler = new PaymentValidationFinishedHandler(_repoMock.Object);
 
@@ -35,7 +35,7 @@ namespace MerchantPayment.API.UnitTests.IntegrationEvents.EventHandlers
             await _paymentValidationFinishedHandler.Handle(_fakeEvent);
 
             // AK TODO change from random to the exact Guid
-            _repoMock.Verify(m => m.UpdateState(It.IsAny<Guid>(), PaymentStatus.Processing), Times.Once());
+            _repoMock.Verify(m => m.UpdateStatusAsync(It.IsAny<Guid>(), PaymentStatus.Processing), Times.Once());
 
             
         }

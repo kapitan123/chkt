@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -6,6 +7,7 @@ namespace MerchantPayment.API.Controllers;
 [ApiController]
 [Route("[controller]")]
 [ApiVersion("1.0")]
+[Authorize]
 public class PaymentsController : ControllerBase
 {
     private readonly ILogger<PaymentsController> _logger;
@@ -21,7 +23,7 @@ public class PaymentsController : ControllerBase
     [HttpPost("submit")]
     [ProducesResponseType(typeof(SubmitPaymentResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(ErrorDetails), (int)HttpStatusCode.BadRequest)]
-    public async Task<IActionResult> SubmitAsync(SubmitPaymentRequest submitReq)
+    public async Task<ActionResult<SubmitPaymentResponse>> SubmitAsync(SubmitPaymentRequest submitReq)
     {
         // AK TODO perform basic Validation
         var cardValidationResult = _validationService.Validate(submitReq.CardDetails);
@@ -30,25 +32,28 @@ public class PaymentsController : ControllerBase
         {
             return BadRequest(new ErrorDetails(cardValidationResult.Errors.ToArray()));
         }
-        var id = await _paymentsRepo.CreatePaymentAsync(submitReq);
-        //- CreatedAtAction(nameof(Get), new { id = Guid.NewGuid() }, payment.ToContract()) : BadRequest(errorMessage);
-        // Mask CardNumber
-        // submit to state
-        // publish a PaymentCreatedEvent - publish so we can notify or count
-        // publish RequestPaymentValidation - because we need at least one consumer
-        // return ID
-        throw new NotImplementedException();
+
+        // AK TODO mask card number
+        // AK TODO publish creation event
+        var id = await _paymentsRepo.CreatePaymentAsync(submitReq.Sum, submitReq.CardDetails, submitReq.Message);
+
+        return Ok(new SubmitPaymentResponse(id));
     }
 
-    // AK TODO should separate DTO and persistance
     [HttpGet("{id}/details")]
     [ProducesResponseType(typeof(PaymentTransaction), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(ErrorDetails), (int)HttpStatusCode.NotFound)]
     [ProducesResponseType(typeof(ErrorDetails), (int)HttpStatusCode.BadRequest)]
-    public async Task<ActionResult<PaymentTransaction>> GetTransactionDetails(Guid id)
+    public async Task<ActionResult<PaymentTransaction>> GetPaymentDetails(Guid id)
     {
         // AK TODO add error handling
         var paymentsTransaction = await _paymentsRepo.GetByIdAsync(id);
+
+        if(paymentsTransaction == null)
+        {
+            return NotFound();
+        }
+
         return Ok(paymentsTransaction);
     }
 }

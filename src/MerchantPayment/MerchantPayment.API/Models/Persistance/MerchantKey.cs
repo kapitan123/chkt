@@ -2,7 +2,7 @@
 
 public record MerchantKey(
     Guid Id,
-    string MerchantName,
+    string Owner,
     DateTime ExpiratioDate,
     bool IsActive
 );

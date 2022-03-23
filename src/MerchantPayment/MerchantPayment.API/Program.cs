@@ -9,6 +9,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDaprClient();
 builder.AddCustomHealthChecks();
 builder.AddCustomServices();
+// AK TODO main auth strategy
+builder.AddMerchantKeyAuthentication();
+
 
 var app = builder.Build();
 
@@ -20,13 +23,17 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseValidateMerchantKey();
+
+// AK TODO fallback
+//app.UseValidateMerchantKey();
 app.UseCloudEvents();
 
 // AK TODO check what it actually do
-// app.UseAuthentication();
+app.UseAuthorization();
+app.UseAuthentication();
 
 app.UseCors("CorsPolicy");
+
 app.MapDefaultControllerRoute();
 app.MapControllers();
 app.MapSubscribeHandler();

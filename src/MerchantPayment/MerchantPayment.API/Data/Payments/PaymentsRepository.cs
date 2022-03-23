@@ -2,7 +2,7 @@
 
 public class PaymentsRepository : IPaymentsRepository
 {
-    private const string StoreName = "eshop-statestore";
+    private const string StoreName = "payment-statestore";
 
     private readonly DaprClient _daprClient;
     private readonly ILogger _logger;
@@ -13,41 +13,47 @@ public class PaymentsRepository : IPaymentsRepository
         _logger = logger;
     }
 
-    public Task<Guid> CreatePaymentAsync(SubmitPaymentRequest req)
+    public async Task<Guid> CreatePaymentAsync(PaymentAmount amount, CardDetails cardDetails, string message)
     {
-        throw new NotImplementedException();
+        var payment = new PaymentTransaction()
+        {
+            Id = Guid.NewGuid(),
+            PaymentAmount = amount,
+            CardDetails = cardDetails,
+            Status = PaymentStatus.Created,
+            CreatedOn = DateTime.UtcNow,
+            Message = message
+        };
+
+        await _daprClient.SaveStateAsync(StoreName, payment.Id.ToString(), payment);
+        _logger.LogInformation("Payment with id {Id} was created.", payment.Id);
+
+        return payment.Id;
     }
-
-    public Task DeleteBasketAsync(string id) =>
-        _daprClient.DeleteStateAsync(StoreName, id);
-
-    public Task<CustomerBasket> GetBasketAsync(string customerId) =>
-        _daprClient.GetStateAsync<CustomerBasket>(StoreName, customerId);
 
     public Task<PaymentTransaction> GetByIdAsync(Guid paymentId)
     {
-        throw new NotImplementedException();
+        return _daprClient.GetStateAsync<PaymentTransaction>(StoreName, paymentId.ToString());
     }
 
-    public async Task<CustomerBasket> UpdateBasketAsync(CustomerBasket basket)
+    public async Task UpdateStatusAsync(Guid paymentId, PaymentStatus newStatus)
     {
-        var state = await _daprClient.GetStateEntryAsync<CustomerBasket>(StoreName, basket.BuyerId);
-        state.Value = basket;
+        var state = await _daprClient.GetStateEntryAsync<PaymentTransaction>(StoreName, paymentId.ToString());
+        state.Value.Status = newStatus;
 
         await state.SaveAsync();
 
-        _logger.LogInformation("Basket item persisted successfully.");
-
-        return await GetBasketAsync(basket.BuyerId);
+        _logger.LogInformation("Status of payment with id {Id} was updated.", paymentId);
     }
 
-    public Task UpdateStateAsync(Guid paymentId, PaymentStatus newStatus)
+    public async Task FinalizeSuccess(Guid paymentId, string bankReference)
     {
-        throw new NotImplementedException();
-    }
+        var state = await _daprClient.GetStateEntryAsync<PaymentTransaction>(StoreName, paymentId.ToString());
+        state.Value.Status = PaymentStatus.Succeed;
+        state.Value.BankReference = bankReference;
 
-    public Task UpdateValidationStateAsync(Guid paymentId, bool newValidationState)
-    {
-        throw new NotImplementedException();
+        await state.SaveAsync();
+
+        _logger.LogInformation("Payment with id {Id} is finished.", paymentId);
     }
 }
