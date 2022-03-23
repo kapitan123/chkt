@@ -1,27 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MerchantPayment.API.IntegrationEvents.EventHandlers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MerchantPayment.API.Controllers;
 
+[Route("api/v1/[controller]")]
 [ApiController]
-[Route("[controller]")]
-public class IntegrationEventController
+public class IntegrationEventController : ControllerBase
 {
-    private readonly ILogger<PaymentsController> _logger;
+    private const string DAPR_PUBSUB_NAME = "pubsub";
 
-    public IntegrationEventController(ILogger<PaymentsController> logger)
-    {
-        _logger = logger;
-    }
+    [HttpPost("PaymentBankTransactionSucceeded")]
+    [Topic(DAPR_PUBSUB_NAME, nameof(PaymentBankTransactionSucceededEvent))]
+    public Task HandleAsync(
+        PaymentBankTransactionSucceededEvent @event,
+        [FromServices] PaymentBankTransactionSucceededHandler handler)
+            => handler.Handle(@event);
 
-    [HttpPost("submit")]
-    // AK TODO  Handle
-    public async Task<SubmitPaymentResponse> Handle(SubmitPaymentRequest submitReq)
-    {
-        // Invoke a handler
-        // IsValidationFinished
-        // publish a message
-        // return ID
-
-        throw new NotImplementedException();
-    }
+    [HttpPost("PaymentBankTransactionFailed")]
+    [Topic(DAPR_PUBSUB_NAME, nameof(PaymentBankTransactionFailedEvent))]
+    public Task HandleAsync(
+        PaymentBankTransactionFailedEvent @event,
+        [FromServices] PaymentBankTransactionFailedHandler handler)
+            => handler.Handle(@event);
 }

@@ -18,15 +18,16 @@ public static class ProgramExtensions
 
         services.AddSingleton<IPaymentsRepository, PaymentsRepository>();
         services.AddSingleton<IMerchantKeysRepository, MerchantKeysRepositoryMock>();
-        services.AddTransient<IValidationService, ValidationService>();
+        services.AddSingleton<ISystemClock, SystemClock>();
+        services.AddScoped<IValidationService, ValidationService>();
+        services.AddScoped<IEventBus, DaprEventBus>();
     }
 
     public static void AddMerchantKeyAuthentication(this WebApplicationBuilder builder)
     {
-        // AK TODO DefaultChallengeScheme is redundant
-        builder.Services.AddAuthentication(o => o.DefaultAuthenticateScheme = MerchantKeyAuthenticationOptions.DefaultScheme
-        )
-        .AddScheme<MerchantKeyAuthenticationOptions, MerchantKeyAuthenticationHandler>
-        (MerchantKeyAuthenticationOptions.DefaultScheme, options => { });
+        builder.Services.AddAuthentication
+            (o => o.DefaultAuthenticateScheme = MerchantKeyAuthenticationOptions.DefaultScheme)
+            .AddScheme<MerchantKeyAuthenticationOptions, MerchantKeyAuthenticationHandler>
+                (MerchantKeyAuthenticationOptions.DefaultScheme, options => { });
     }
 }

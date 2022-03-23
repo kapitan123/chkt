@@ -1,9 +1,9 @@
 ﻿namespace MerchantPayment.API.IntegrationEvents.EventHandlers;
 
-public class PaymentValidationFinishedHandler : IIntegrationEventHandler<PaymentBankTransactionFailedEvent>
+public class PaymentBankTransactionFailedHandler : IIntegrationEventHandler<PaymentBankTransactionFailedEvent>
 {
     private readonly IPaymentsRepository _payments;
-    public PaymentValidationFinishedHandler(IPaymentsRepository payments)
+    public PaymentBankTransactionFailedHandler(IPaymentsRepository payments)
     {
         _payments = payments;
     }

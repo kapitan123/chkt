@@ -32,7 +32,6 @@ public class PaymentsController : ControllerBase
     [ProducesResponseType(typeof(ErrorDetails), (int)HttpStatusCode.BadRequest)]
     public async Task<ActionResult<SubmitPaymentResponse>> SubmitAsync(SubmitPaymentRequest submitReq)
     {
-        // AK TODO perform basic Validation
         var cardValidationResult = _validationService.Validate(submitReq.CardDetails);
 
         if (!cardValidationResult.IsValid)

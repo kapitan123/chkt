@@ -1,11 +1,15 @@
-﻿using System.Text.RegularExpressions;
-
-namespace MerchantPayment.API.Services;
+﻿namespace MerchantPayment.API.Services;
 
 public class ValidationService : IValidationService
 {
-    private readonly Regex _cardExp = new(@"^(1298|1267|4512|4567|8901|8933)([\-\s]?[0-9]{4}){3}$");
+    private readonly Regex _cardExp = new(@"^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$");
     private readonly Regex _cvvExp = new(@"^\d{3}$");
+    private readonly ISystemClock _clock;
+
+    public ValidationService(ISystemClock clock)
+    {
+        _clock = clock;
+    }
 
     public ValidationResult Validate(CardDetails details)
     {
@@ -17,7 +21,8 @@ public class ValidationService : IValidationService
 
         if (!IsCvvSet(details.Cvv))
         {
-            errors.Add("Card cvv is invalid"); // AK TODO questionabl descision to expose this exception
+            // should not actually expose it
+            errors.Add("Card cvv is invalid");
         }
 
         if (!IsExpirationValid(details.Expiration))
@@ -34,9 +39,8 @@ public class ValidationService : IValidationService
 
     private bool IsNumberValid(string cardNumber) => _cardExp.IsMatch(cardNumber);
 
-
     private bool IsCvvSet(string cvv) => _cvvExp.IsMatch(cvv);
 
-    private static bool IsExpirationValid(DateOnly expirationDate) => expirationDate > DateOnly.FromDateTime(DateTime.Now);
+    private bool IsExpirationValid(DateTime expirationDate) => expirationDate > _clock.UtcNow;
 }
 
