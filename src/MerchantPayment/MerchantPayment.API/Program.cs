@@ -20,7 +20,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseValidateMerchantKey();
 app.UseCloudEvents();
 
 // AK TODO check what it actually do

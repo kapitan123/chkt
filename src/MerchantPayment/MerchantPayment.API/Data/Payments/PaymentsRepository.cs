@@ -1,4 +1,4 @@
-﻿namespace Microsoft.eShopOnDapr.Services.Basket.API.Infrastructure.Repositories;
+﻿namespace MerchantPayment.API.Data;
 
 public class PaymentsRepository : IPaymentsRepository
 {
