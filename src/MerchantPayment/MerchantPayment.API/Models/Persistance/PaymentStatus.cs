@@ -3,7 +3,6 @@
 public enum PaymentStatus
 {
     Created,
-    Processing,
     SentToProvider,
     Failed,
     Succeed

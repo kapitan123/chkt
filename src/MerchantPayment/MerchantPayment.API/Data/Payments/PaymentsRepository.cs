@@ -56,4 +56,15 @@ public class PaymentsRepository : IPaymentsRepository
 
         _logger.LogInformation("Payment with id {Id} is finished.", paymentId);
     }
+
+    public async Task FinalizeFailure(Guid paymentId, string statusReason)
+    {
+        var state = await _daprClient.GetStateEntryAsync<PaymentTransaction>(StoreName, paymentId.ToString());
+        state.Value.Status = PaymentStatus.Failed;
+        state.Value.BankReference = statusReason;
+
+        await state.SaveAsync();
+
+        _logger.LogInformation("Payment with id {Id} is finished.", paymentId);
+    }
 }

@@ -6,4 +6,5 @@ public interface IPaymentsRepository
     Task<PaymentTransaction> GetByIdAsync(Guid paymentId);
     Task UpdateStatusAsync(Guid paymentId, PaymentStatus newStatus);
     Task FinalizeSuccess(Guid paymentId, string bankReference);
+    Task FinalizeFailure(Guid paymentId, string statusReason);
 }

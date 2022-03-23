@@ -1,9 +1,5 @@
-﻿namespace MerchantPayment.API.IntegrationEvents.Events
-{
-    public class PaymentStatusChangedToReadyForExternalTransaction
-    {
-        public Guid Id { get; set; }
+﻿namespace MerchantPayment.API.IntegrationEvents.Events;
 
-        public DateTime TimeStamp { get; set; }
-    }
-}
+// AK TODO extensive event
+public record PaymentStatusChangedToReadyForExternalTransaction(Guid PaymentId) : IntegrationEvent;
+

@@ -8,11 +8,9 @@ public class PaymentValidationFinishedHandler : IIntegrationEventHandler<Payment
         _payments = payments;
     }
 
-    public Task Handle(PaymentBankTransactionFailedEvent @event)
+    public async Task Handle(PaymentBankTransactionFailedEvent @event)
     {
-        // Update Status to sent to provider
-        // publish SendToProviderEvent
-        throw new NotImplementedException();
+        await _payments.FinalizeFailure(@event.Id, @event.Reason);
     }
 }
 

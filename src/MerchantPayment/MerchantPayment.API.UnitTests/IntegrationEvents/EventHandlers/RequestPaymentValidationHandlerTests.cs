@@ -35,7 +35,7 @@ namespace MerchantPayment.API.UnitTests.IntegrationEvents.EventHandlers
             await _paymentValidationFinishedHandler.Handle(_fakeEvent);
 
             // AK TODO change from random to the exact Guid
-            _repoMock.Verify(m => m.UpdateStatusAsync(It.IsAny<Guid>(), PaymentStatus.Processing), Times.Once());
+            _repoMock.Verify(m => m.UpdateStatusAsync(It.IsAny<Guid>(), PaymentStatus.SentToProvider), Times.Once());
 
             
         }
