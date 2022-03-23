@@ -1,7 +1,6 @@
-﻿namespace BankProxy.API.Services
+﻿namespace BankProxy.API.Services;
+
+public interface IBankFactory
 {
-    public interface IBankFactory
-    {
-        IBank GetBankByCardNumber(CardNumber cardNumber);
-    }
+    IBank GetBankByCardNumber(CardNumber cardNumber);
 }

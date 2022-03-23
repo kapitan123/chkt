@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\DomainModels\DomainModels.csproj" />
     <ProjectReference Include="..\..\Common\EventBus\EventBus.csproj" />
     <ProjectReference Include="..\..\Common\Healthchecks\Healthchecks\Healthchecks.csproj" />
   </ItemGroup>

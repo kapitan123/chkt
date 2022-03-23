@@ -14,6 +14,7 @@ Install: kubectl https://kubernetes.io/docs/tasks/tools/
 
 4) Use Postman collection or call http://localhost:80
 
+AK TODO remove it
 - Update images
 docker build -f src\BankProxy\BankProxy.API\Dockerfile -t kapitan123/bank-proxy.api .; docker push kapitan123/bank-proxy.api
 docker build -f src\MerchantPayment\MerchantPayment.API\Dockerfile -t kapitan123/merchant-payment.api .; docker push kapitan123/merchant-payment.api

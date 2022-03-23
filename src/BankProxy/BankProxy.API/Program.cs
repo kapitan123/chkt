@@ -24,8 +24,7 @@ app.UseHttpsRedirection();
 app.UseCloudEvents();
 
 app.UseAuthorization();
-// AK TODO check what it actually do
-// app.UseAuthentication();
+app.UseAuthentication();
 
 app.UseCors("CorsPolicy");
 app.MapDefaultControllerRoute();

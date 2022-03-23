@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\DomainModels\DomainModels.csproj" />
     <ProjectReference Include="..\MerchantPayment.API\MerchantPayment.API.csproj" />
   </ItemGroup>
 

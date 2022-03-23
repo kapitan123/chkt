@@ -1,24 +1,23 @@
-﻿namespace BankProxy.API.Services
+﻿namespace BankProxy.API.Services;
+
+public class BankFactory : IBankFactory
 {
-    public class BankFactory : IBankFactory
+    private readonly IEnumerable<IBank> _registeredProviders;
+
+    public BankFactory(IEnumerable<IBank> registeredProviders)
     {
-        private readonly IEnumerable<IBank> _registeredProviders;
+        _registeredProviders = registeredProviders;
+    }
 
-        public BankFactory(IEnumerable<IBank> registeredProviders)
+    public IBank GetBankByCardNumber(CardNumber cardNumber)
+    {
+        var provider = _registeredProviders.FirstOrDefault(p => p.IsIssuerOf(cardNumber));
+
+        if (provider == null)
         {
-            _registeredProviders = registeredProviders;
+            throw new ArgumentException($"Unknow issuer of the card bank numbers: {cardNumber.BankDigits}");
         }
 
-        public IBank GetBankByCardNumber(CardNumber cardNumber)
-        {
-            var provider = _registeredProviders.FirstOrDefault(p => p.IsIssuerOf(cardNumber));
-
-            if (provider == null)
-            {
-                throw new ArgumentException($"Unknow issuer of the card bank numbers: {cardNumber.BankDigits}");
-            }
-
-            return provider;
-        }
+        return provider;
     }
 }

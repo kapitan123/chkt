@@ -1,12 +1,12 @@
+global using Common.DomainModels;
+global using Common.DomainModels.Events;
 global using Common.EventBus;
 global using Common.EventBus.Abstractions;
-global using Common.EventBus.Events;
 global using Dapr;
 global using Dapr.Client;
 global using HealthChecks.UI.Client;
 global using MerchantPayment.API;
 global using MerchantPayment.API.Data;
-global using MerchantPayment.API.IntegrationEvents.Events;
 global using MerchantPayment.API.Models.DTO;
 global using MerchantPayment.API.Models.Persistance;
 global using MerchantPayment.API.Services;

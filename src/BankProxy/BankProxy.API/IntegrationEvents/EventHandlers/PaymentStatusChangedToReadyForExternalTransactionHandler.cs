@@ -3,47 +3,66 @@
 public class PaymentStatusChangedToReadyForExternalTransactionHandler : IIntegrationEventHandler<PaymentStatusChangedToReadyForExternalTransactionEvent>
 {
     private readonly IBankFactory _bankProvidersFactory;
+    private readonly IProcessedMessagesRepository _messagesRepo;
     private readonly IEventBus _eventBus;
     private readonly ILogger<PaymentStatusChangedToReadyForExternalTransactionHandler> _logger;
 
     public PaymentStatusChangedToReadyForExternalTransactionHandler(
             ILogger<PaymentStatusChangedToReadyForExternalTransactionHandler> logger,
             IBankFactory bankProvidersFactory,
+            IProcessedMessagesRepository messagesRepo,
             IEventBus eventBus)
     {
         _bankProvidersFactory = bankProvidersFactory;
         _eventBus = eventBus;
         _logger = logger;
+        _messagesRepo = messagesRepo;
     }
 
     public async Task Handle(PaymentStatusChangedToReadyForExternalTransactionEvent @event)
     {
-        // We should store the message and send an akk
-        // We should retry failed transactions 
-        // We should be protected from double charge
-        // We should implement idempotency
-        // We should have it in the state storage
-        // We should retry on saved transactions if they were not successfullly finished
-        // We store transaction id for idempotency reasons as well, because of at least once delivery
         try
         {
-            var bank = _bankProvidersFactory.GetBankByCardNumber(checkoutReq.CardDetails.CardNumber);
-
-            var bankProcessingResult = await bank.ProcessTransaction(checkoutReq);
-
-            var response = new CheckoutResponse
+            var isDuplicateMessage = await _messagesRepo.IsMessageDuplicate(@event.Id);
+            if (isDuplicateMessage)
             {
-                Message = bankProcessingResult.Message,
-                IsSuccess = bankProcessingResult.StatusCode == 0,
-                Code = bankProcessingResult.StatusCode
+                _logger.LogWarning("The message was duplicated");
+                return;
+            }
+
+            await _messagesRepo.SavePendingMessage(@event);
+
+            var cardNumber = new CardNumber(@event.CardDetails.Number);
+
+            var issuerBank = _bankProvidersFactory.GetBankByCardNumber(cardNumber);
+
+            var bankPayment = new BankPayment
+            {
+                CardDetails = @event.CardDetails,
+                PaymentAmount = @event.Amount,
+                Message = @event.Message
             };
 
-            return Ok(response);
+            var bankProcessingResult = await issuerBank.ProcessTransaction(bankPayment);
+
+            await _messagesRepo.FinishMessageProcessing(@event.Id);
+
+            if (bankProcessingResult.IsSuccess)
+            {
+                await _eventBus.PublishAsync(
+                    new PaymentBankTransactionSucceededEvent(@event.PaymentId, bankProcessingResult.BankReference));
+            } 
+            else
+            {
+                await _eventBus.PublishAsync(
+                    new PaymentBankTransactionFailedEvent(@event.PaymentId, bankProcessingResult.Message));
+            }         
         }
-        catch (ArgumentException ex)
+        catch (Exception ex)
         {
-            _logger.LogError(ex.Message);
-            return BadRequest(new ErrorDetails(ex.Message));
+            _logger.LogError("Bank transaction has failed {Message}", ex.Message);
+            await _messagesRepo.FinishMessageProcessing(@event.Id);
+            await _eventBus.PublishAsync(new PaymentBankTransactionFailedEvent(@event.PaymentId, ex.Message));
         }
     }
 }

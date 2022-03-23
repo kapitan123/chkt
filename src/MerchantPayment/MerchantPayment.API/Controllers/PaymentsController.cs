@@ -39,11 +39,21 @@ public class PaymentsController : ControllerBase
             return BadRequest(new ErrorDetails(cardValidationResult.Errors));
         }
 
+        if(submitReq.Sum.Amount <= 0)
+        {
+            return BadRequest(new ErrorDetails("Payment sum should be > 0"));
+        }
+
         var id = await _paymentsRepo.CreatePaymentAsync(submitReq.Sum, submitReq.CardDetails, submitReq.Message);
-        
-        // AK TODO this event should have all the info about the payment
-        // amount and card details
-        await _eventBus.PublishAsync(new PaymentCreatedEvent(id));
+
+        await _paymentsRepo.UpdateStatusAsync(id, PaymentStatus.ReadyForExternalTransaction);
+
+        var @event = new PaymentStatusChangedToReadyForExternalTransactionEvent(id,
+            submitReq.CardDetails,
+            submitReq.Sum,
+            submitReq.Message);
+
+        await _eventBus.PublishAsync(@event);
 
         return Ok(new SubmitPaymentResponse(id));
     }

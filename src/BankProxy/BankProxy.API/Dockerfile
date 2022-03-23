@@ -10,6 +10,7 @@ WORKDIR /src
 
 COPY ["src/BankProxy/BankProxy.API/BankProxy.API.csproj", "src/BankProxy/BankProxy.API/"]
 COPY ["src/Common/EventBus/EventBus.csproj", "src/Common/EventBus/"]
+COPY ["src/Common/DomainModels/DomainModels.csproj", "src/Common/DomainModels/"]
 COPY ["src/Common/Healthchecks/Healthchecks/Healthchecks.csproj", "src/Common/Healthchecks/Healthchecks/"]
 COPY ["src/MerchantPayment/MerchantPayment.API/MerchantPayment.API.csproj", "src/MerchantPayment/MerchantPayment.API/"]
 COPY ["NuGet.config", "./"]

@@ -2,7 +2,6 @@
 {
     public class CardNumber
     {
-        // AK TODO use library to create a valueobject (ValueOf)
         public string Number { get; set; }
 
         /// <summary>
@@ -12,7 +11,6 @@
 
         public CardNumber(string number)
         {
-            // AK TODO validate and throw
             Number = number;
         }
     }

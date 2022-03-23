@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace MerchantPayment.API.Models.DTO;
+﻿namespace Common.DomainModels;
 
 public class ErrorDetails
 {

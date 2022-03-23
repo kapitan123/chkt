@@ -1,6 +1,4 @@
-﻿using BankProxy.API.IntegrationEvents.EventHandlers;
-using Dapr;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace BankProxy.API.Controllers;
 
