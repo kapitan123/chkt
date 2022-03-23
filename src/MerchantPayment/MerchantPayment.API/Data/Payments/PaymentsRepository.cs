@@ -19,7 +19,7 @@ public class PaymentsRepository : IPaymentsRepository
         {
             Id = Guid.NewGuid(),
             PaymentAmount = amount,
-            CardDetails = cardDetails,
+            CardDetails = cardDetails with { Number = cardDetails.MaskedNumber },
             Status = PaymentStatus.Created,
             CreatedOn = DateTime.UtcNow,
             Message = message

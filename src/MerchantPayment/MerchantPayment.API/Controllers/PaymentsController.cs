@@ -39,7 +39,6 @@ public class PaymentsController : ControllerBase
             return BadRequest(new ErrorDetails(cardValidationResult.Errors));
         }
 
-        // AK TODO mask card number
         var id = await _paymentsRepo.CreatePaymentAsync(submitReq.Sum, submitReq.CardDetails, submitReq.Message);
         
         // AK TODO this event should have all the info about the payment

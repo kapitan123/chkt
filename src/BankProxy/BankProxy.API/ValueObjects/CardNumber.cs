@@ -6,9 +6,9 @@
         public string Number { get; set; }
 
         /// <summary>
-        /// 4 first digits a space and next 2 digits
+        /// 6 first digits
         /// </summary>
-        public string BankDigits => Number[..6];
+        public string BankDigits => Number[..5];
 
         public CardNumber(string number)
         {
