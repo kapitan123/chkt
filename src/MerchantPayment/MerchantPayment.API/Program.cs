@@ -9,7 +9,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDaprClient();
 builder.AddCustomHealthChecks();
 builder.AddCustomServices();
-// AK TODO main auth strategy
+builder.AddEventHandling();
 builder.AddMerchantKeyAuthentication();
 
 
@@ -24,11 +24,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// AK TODO fallback
-//app.UseValidateMerchantKey();
 app.UseCloudEvents();
 
-// AK TODO check what it actually do
 app.UseAuthorization();
 app.UseAuthentication();
 

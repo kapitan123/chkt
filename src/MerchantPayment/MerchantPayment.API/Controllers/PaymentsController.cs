@@ -12,11 +12,11 @@ namespace MerchantPayment.API.Controllers;
 public class PaymentsController : ControllerBase
 {
     private readonly ILogger<PaymentsController> _logger;
-    private readonly IValidationService _validationService;
+    private readonly IRequestValidationService _validationService;
     private readonly IPaymentsRepository _paymentsRepo;
     private readonly IEventBus _eventBus;
     public PaymentsController(ILogger<PaymentsController> logger, 
-        IValidationService validationService, 
+        IRequestValidationService validationService, 
         IPaymentsRepository paymentsRepo,
         IEventBus eventBus
         )
@@ -37,11 +37,6 @@ public class PaymentsController : ControllerBase
         if (!cardValidationResult.IsValid)
         {
             return BadRequest(new ErrorDetails(cardValidationResult.Errors));
-        }
-
-        if(submitReq.Sum.Amount <= 0)
-        {
-            return BadRequest(new ErrorDetails("Payment sum should be > 0"));
         }
 
         var id = await _paymentsRepo.CreatePaymentAsync(submitReq.Sum, submitReq.CardDetails, submitReq.Message);

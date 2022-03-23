@@ -1,4 +1,5 @@
 ﻿using MerchantPayment.API.Infrastructure.Middleware;
+using MerchantPayment.API.IntegrationEvents.EventHandlers;
 
 namespace MerchantPayment.API;
 
@@ -19,10 +20,18 @@ public static class ProgramExtensions
         services.AddSingleton<IPaymentsRepository, PaymentsRepository>();
         services.AddSingleton<IMerchantKeysRepository, MerchantKeysRepositoryMock>();
         services.AddSingleton<ISystemClock, SystemClock>();
-        services.AddScoped<IValidationService, ValidationService>();
-        services.AddScoped<IEventBus, DaprEventBus>();
+        services.AddScoped<IRequestValidationService, RequestValidationService>();
+  
     }
 
+    public static void AddEventHandling(this WebApplicationBuilder builder)
+    {
+        var services = builder.Services;
+        services.AddScoped<IEventBus, DaprEventBus>();
+        services.AddScoped<PaymentBankTransactionSucceededHandler>();
+        services.AddScoped<PaymentBankTransactionFailedHandler>();
+    }
+    
     public static void AddMerchantKeyAuthentication(this WebApplicationBuilder builder)
     {
         builder.Services.AddAuthentication

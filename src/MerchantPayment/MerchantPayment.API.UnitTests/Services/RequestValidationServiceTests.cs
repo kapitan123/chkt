@@ -1,6 +1,6 @@
 namespace MerchantPayment.API.UnitTests.Services
 {
-    public class ValidationServiceTests
+    public class RequestValidationServiceTests
     {
         [SetUp]
         public void Setup()

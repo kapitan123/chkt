@@ -1,6 +1,5 @@
 ﻿namespace MerchantPayment.API.Data;
 
-// AK TODO this is a mock of credentials storage. In practice  this will be a separate sevice
 public class MerchantKeysRepositoryMock : IMerchantKeysRepository
 {
     private readonly Dictionary<Guid, MerchantKey> _credentialKeys = new ();

@@ -1,4 +1,6 @@
-﻿namespace BankProxy.API;
+﻿using Common.EventBus;
+
+namespace BankProxy.API;
 
 public static class ProgramExtensions
 {
@@ -17,5 +19,12 @@ public static class ProgramExtensions
 
         services.AddSingleton<IBank, ShadyBankMock>();
         services.AddSingleton<IBank, TrustyBankMock>();
+    }
+
+    public static void AddEventHandling(this WebApplicationBuilder builder)
+    {
+        var services = builder.Services;
+        services.AddScoped<IEventBus, DaprEventBus>();
+        services.AddScoped<PaymentStatusChangedToReadyForExternalTransactionHandler>();
     }
 }

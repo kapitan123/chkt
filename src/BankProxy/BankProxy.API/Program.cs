@@ -8,6 +8,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDaprClient();
 builder.AddBankProviders();
+builder.AddEventHandling();
 builder.AddCustomHealthChecks();
 
 var app = builder.Build();
