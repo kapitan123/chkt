@@ -1,3 +1,14 @@
 global using NUnit.Framework;
 global using Moq;
 global using FluentAssertions;
+global using MerchantPayment.API.Data;
+global using Common.DomainModels;
+global using Dapr.Client;
+global using MerchantPayment.API.Models.Persistance;
+global using Microsoft.AspNetCore.Authentication;
+global using Microsoft.Extensions.Logging;
+global using System;
+global using System.Threading;
+global using System.Threading.Tasks;
+global using MerchantPayment.API.Services;
+global using MerchantPayment.API.Models.DTO;

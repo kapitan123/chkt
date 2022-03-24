@@ -6,11 +6,13 @@ public class PaymentsRepository : IPaymentsRepository
 
     private readonly DaprClient _daprClient;
     private readonly ILogger _logger;
+    private readonly ISystemClock _clock;
 
-    public PaymentsRepository(DaprClient daprClient, ILogger<PaymentsRepository> logger)
+    public PaymentsRepository(DaprClient daprClient, ILogger<PaymentsRepository> logger, ISystemClock clock)
     {
         _daprClient = daprClient;
         _logger = logger;
+        _clock = clock;
     }
 
     public async Task<Guid> CreatePaymentAsync(PaymentAmount amount, CardDetails cardDetails, string message)
@@ -19,9 +21,9 @@ public class PaymentsRepository : IPaymentsRepository
         {
             Id = Guid.NewGuid(),
             PaymentAmount = amount,
-            CardDetails = cardDetails with { Number = cardDetails.MaskedNumber },
+            CardDetails = cardDetails with { Number = GetMaskedCardNumber(cardDetails.Number) },
             Status = PaymentStatus.Created,
-            CreatedOn = DateTime.UtcNow,
+            CreatedOn = _clock.UtcNow.DateTime,
             Message = message
         };
 
@@ -67,4 +69,6 @@ public class PaymentsRepository : IPaymentsRepository
 
         _logger.LogInformation("Payment with id {Id} is finished.", paymentId);
     }
+
+    private string GetMaskedCardNumber(string number) => number[..3] + new string('*', 6) + number[11..];
 }

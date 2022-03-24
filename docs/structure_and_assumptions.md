@@ -9,7 +9,10 @@ Most of the state stores are mocked by in-memory collections, so they can't have
 - Uses value of `X-MERCHANT-KEY` header to authenticate requests
 	- Test key value is `34f25424-088c-482a-a75e-8ccbbecf8112`
 	- `MerchantKeysRepositoryMock` mocks external storage 
-- `CardDetails.Message` is used for testing of mocks
+- `CardDetails.Message` is used for testing possible values
+	- blackList
+	- noMoney
+	- blocked
 
 ### BankProxy.API
 
