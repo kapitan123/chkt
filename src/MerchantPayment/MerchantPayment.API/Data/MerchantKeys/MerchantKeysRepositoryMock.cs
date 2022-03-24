@@ -9,11 +9,11 @@ public class MerchantKeysRepositoryMock : IMerchantKeysRepository
         // seed data
         var normalMerhcant = new MerchantKey(Guid.Parse("34f25424-088c-482a-a75e-8ccbbecf8112"),
             "ActiveEshop",
-            DateTime.Parse("18.03.2026"), true);
+            DateTime.Parse("2026-08-01T00:00:00-07:00"), true);
 
         var blockedMerhcant = new MerchantKey(Guid.Parse("8f71c4ee-cb94-4877-a3f7-7382d41d9918"),
             "BlockedEshop",
-            DateTime.Parse("18.03.2026"), false);
+            DateTime.Parse("2026-08-01T00:00:00-07:00"), false);
 
         _credentialKeys.Add(normalMerhcant.Id, normalMerhcant);
         _credentialKeys.Add(blockedMerhcant.Id, blockedMerhcant);
