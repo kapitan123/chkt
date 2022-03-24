@@ -1,4 +1,4 @@
-#Ideas
+# Ideas
 
 - Shared domain models in Common.DomainModels should be separated
 - ValueObjects for CardNumber and PaymentAmount should have more domain-specific logic

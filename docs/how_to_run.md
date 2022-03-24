@@ -1,11 +1,12 @@
-#Deplyment
+# Deplyment
 Solution requires minikube or docker-for-desktop with kubernetes support and helm
 
-#Install: 
+## Install: 
 - Helm https://helm.sh/docs/intro/install/
 - Dapr CLI https://docs.dapr.io/getting-started/install-dapr-cli/
 - kubectl https://kubernetes.io/docs/tasks/tools/
 
+## Run
 1) Run: `$ dapr init -k`
 
 2) Go to: deploy\helm 
