@@ -1,7 +1,14 @@
+global using BankProxy.API.Data;
+global using BankProxy.API.IntegrationEvents.EventHandlers;
 global using BankProxy.API.Services;
 global using BankProxy.API.ValueObjects;
+global using Common.DomainModels;
+global using Common.DomainModels.Events;
+global using Common.EventBus.Abstractions;
 global using FluentAssertions;
+global using Microsoft.Extensions.Logging;
 global using Moq;
 global using NUnit.Framework;
 global using System;
 global using System.Collections.Generic;
+global using System.Threading.Tasks;
