@@ -1,4 +1,3 @@
-# chkt
 ## Documentation
 
 - [How to run](/docs/how_to_run.md)
