@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FFE215CC-4C7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{D3B90EA8-D072-4B3A-B74B-26FA3051AD07}"
 	ProjectSection(SolutionItems) = preProject
-		docs\areas of impovement.txt = docs\areas of impovement.txt
-		docs\how to run.txt = docs\how to run.txt
-		docs\structure and assumptions.txt = docs\structure and assumptions.txt
+		docs\areas for impovement.md = docs\areas for impovement.md
+		docs\how to run.md = docs\how to run.md
+		docs\structure and assumptions.md = docs\structure and assumptions.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{EA0B5A00-D6DE-4FD8-BC8E-3894C35CD857}"
@@ -57,11 +57,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{
 		deploy\helm\templates\zipkin.yaml = deploy\helm\templates\zipkin.yaml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Healthchecks", "src\Common\Healthchecks\Healthchecks\Healthchecks.csproj", "{F94B1FA5-0906-4A01-B774-FC275FBCAA33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healthchecks", "src\Common\Healthchecks\Healthchecks\Healthchecks.csproj", "{F94B1FA5-0906-4A01-B774-FC275FBCAA33}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus", "src\Common\EventBus\EventBus.csproj", "{0AE2DACF-7353-4C97-BD8F-2E91887022DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModels", "src\Common\DomainModels\DomainModels.csproj", "{474B2405-2AA8-49C9-A36A-748B2B974DE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModels", "src\Common\DomainModels\DomainModels.csproj", "{474B2405-2AA8-49C9-A36A-748B2B974DE9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CB7D8862-1CC6-45FC-9ADD-ECD846CBD693}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
