@@ -1,7 +1,10 @@
 # chkt
+## Documentation
 
-[how to run](/docs/how to run.md)
+- [How to run](/docs/how_to_run.md)
 
-[areas for impovement](/docs/areas for impovement.md)
+- [Structure and assumptions](/docs/structure_and_assumptions.md)
 
-[structure and assumptions](/docs/structure and assumptions.md)
+- [Areas for impovement](/docs/areas_for_impovement.md)
+
+

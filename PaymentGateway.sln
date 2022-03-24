@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FFE215CC-4C7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{D3B90EA8-D072-4B3A-B74B-26FA3051AD07}"
 	ProjectSection(SolutionItems) = preProject
-		docs\areas for impovement.md = docs\areas for impovement.md
-		docs\how to run.md = docs\how to run.md
-		docs\structure and assumptions.md = docs\structure and assumptions.md
+		docs\areas_for_impovement.md = docs\areas_for_impovement.md
+		docs\how_to_run.md = docs\how_to_run.md
+		docs\structure_and_assumptions.md = docs\structure_and_assumptions.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{EA0B5A00-D6DE-4FD8-BC8E-3894C35CD857}"
