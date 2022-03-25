@@ -14,7 +14,7 @@ spec:
   template:
     metadata:
       labels:
-        app: eshop
+        app: payment
         service: zipkin
     spec:
       containers:

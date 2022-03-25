@@ -8,3 +8,4 @@
 - Encryption of API keys and sensitive data inside events
 - Custom contentTypes for merchant endpoint
 - ELK stack for metrics and logs
+- Save stringified statuses

@@ -10,7 +10,7 @@ public class PaymentBankTransactionSucceededHandler : IIntegrationEventHandler<P
 
     public async Task Handle(PaymentBankTransactionSucceededEvent @event)
     {
-        await _payments.FinalizeSuccess(@event.Id, @event.BankReference);
+        await _payments.FinalizeSuccess(@event.PaymentId, @event.BankReference);
     }
 }
 

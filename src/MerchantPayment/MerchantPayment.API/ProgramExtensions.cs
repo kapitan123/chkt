@@ -20,8 +20,7 @@ public static class ProgramExtensions
         services.AddSingleton<IPaymentsRepository, PaymentsRepository>();
         services.AddSingleton<IMerchantKeysRepository, MerchantKeysRepositoryMock>();
         services.AddSingleton<ISystemClock, SystemClock>();
-        services.AddScoped<IRequestValidationService, RequestValidationService>();
-  
+        services.AddScoped<IRequestValidationService, RequestValidationService>();  
     }
 
     public static void AddEventHandling(this WebApplicationBuilder builder)

@@ -25,7 +25,7 @@ public static class ProgramExtensions
     {
         var services = builder.Services;
         services.AddScoped<IEventBus, DaprEventBus>();
+        services.AddScoped<IProcessedMessagesRepository, ProcessedMessagesRepositoryMock>();
         services.AddScoped<PaymentStatusChangedToReadyForExternalTransactionHandler>();
-        services.AddSingleton<IProcessedMessagesRepository, ProcessedMessagesRepositoryMock>();
     }
 }

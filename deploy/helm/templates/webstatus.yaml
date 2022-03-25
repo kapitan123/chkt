@@ -1,0 +1,68 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: webstatus-cm
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: payment
+    service: webstatus
+data:
+  ASPNETCORE_URLS: http://0.0.0.0:80
+  HealthChecksUI__HealthChecks__0__Name: BankProxy API
+  HealthChecksUI__HealthChecks__0__Uri: http://bank-proxy-api/hc
+  HealthChecksUI__HealthChecks__1__Name: MerchantPayment API
+  HealthChecksUI__HealthChecks__1__Uri: http://merchant-payment-api/hc
+
+---
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: webstatus
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: payment
+    service: webstatus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: webstatus
+  template:
+    metadata:
+      labels:
+        app: payment
+        service: webstatus
+    spec:
+      containers:
+        - name: webstatus
+          image: xabarilcoding/healthchecksui:5.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: webstatus-cm
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: webstatus
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: payment
+    service: webstatus
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30007
+      protocol: TCP
+      name: http
+  selector:
+    service: webstatus

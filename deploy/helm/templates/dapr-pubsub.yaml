@@ -11,6 +11,6 @@ spec:
     value: redis:6379
   - name: redisPassword
     secretKeyRef:
-      name: eshop-secrets
+      name: payment-secrets
       key: RedisPassword
 

@@ -6,8 +6,7 @@ using System.Net;
 namespace MerchantPayment.API.Controllers;
 
 [ApiController]
-[Route("[controller]")]
-[ApiVersion("1.0")]
+[Route("api/v1/[controller]")]
 [Authorize(AuthenticationSchemes = MerchantKeyAuthenticationOptions.DefaultScheme)]
 public class PaymentsController : ControllerBase
 {

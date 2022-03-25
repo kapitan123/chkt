@@ -10,7 +10,7 @@ public class PaymentBankTransactionFailedHandler : IIntegrationEventHandler<Paym
 
     public async Task Handle(PaymentBankTransactionFailedEvent @event)
     {
-        await _payments.FinalizeFailure(@event.Id, @event.Reason);
+        await _payments.FinalizeFailure(@event.PaymentId, @event.Reason);
     }
 }
 
